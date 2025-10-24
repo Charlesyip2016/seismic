@@ -52,3 +52,36 @@ get_ct_trait_associations(tmfacs_sscore_hsa, t2d_magma)
 # in type 2 diabetes
 find_inf_genes("Pancreas.beta cell", tmfacs_sscore_hsa, t2d_magma)
 ```
+
+## Bulk-seismic: Adaptation for Bulk RNA-seq Data
+
+In addition to the original seismic algorithm for single-cell RNA-seq, this package now includes **bulk-seismic**, an adaptation for bulk RNA-seq data. Instead of identifying cell type-trait associations, bulk-seismic identifies disease subtype-trait associations using bulk RNA-seq expression data from patient cohorts.
+
+### Key Modifications
+
+- **Input**: Bulk RNA-seq expression matrix (genes × samples) + disease subtype labels
+- **Algorithm**: Removes the expression ratio component (r_i^(c)) and uses only expression consistency (p_i^(c))
+- **Output**: Disease subtype-trait associations and influential genes
+
+### Quick Start with Bulk-seismic
+
+```R
+# Prepare bulk RNA-seq data
+expression_matrix <- ... # matrix with genes as rows, samples as columns
+subtype_labels <- c("SubtypeA", "SubtypeA", "SubtypeB", ...) # one label per sample
+
+# Run bulk-seismic analysis
+results <- run_bulk_seismic(
+  gene_trait_vector = magma_data,  # GWAS gene-level scores
+  expression_matrix = expression_matrix,
+  subtype_labels = subtype_labels
+)
+
+# View subtype-trait associations
+print(results$subtype_associations)
+
+# View influential genes for significant subtypes
+print(results$influential_genes)
+```
+
+For detailed documentation on bulk-seismic, see [BULK_SEISMIC.md](BULK_SEISMIC.md) and [IMPLEMENTATION_SUMMARY.md](IMPLEMENTATION_SUMMARY.md).
