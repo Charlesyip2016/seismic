@@ -20,6 +20,11 @@ Imports:
     SingleCellExperiment,
     speedglm,
     SummarizedExperiment
+Suggests:
+    mgcv,
+    pROC,
+    knitr,
+    rmarkdown
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
@@ -29,6 +34,8 @@ biocViews: Annotation, Genetics, GenomeWideAssociation, SingleCell, Software, Tr
 LazyData: true
 LazyDataCompression: xz
 Suggests: 
+    mgcv,
+    pROC,
     knitr,
     rmarkdown
 VignetteBuilder: knitr
